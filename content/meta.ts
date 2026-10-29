@@ -10,5 +10,5 @@ export const meta = {
   disciplina: "Radiologia Odontológica",
   professor: "Prof. Dr. Luiz Roberto C. Manhães Jr.",
   instituicao: "ICT/UNESP São José dos Campos",
-  grupo: ["Integrante 1", "Integrante 2", "Integrante 3", "Integrante 4", "Integrante 5"],
+  grupo: ["Clara Rezende", "Maria Clara Massari", "Beatriz Sant’Ana", "Bruna Guedes", "Raphaela Vidal"],
 } as const;
