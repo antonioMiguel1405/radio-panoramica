@@ -1,14 +1,10 @@
-import Link from "next/link";
+import { AnatomyExplorer } from "./simuladores/AnatomyExplorer";
 
-/** Espaço do esquema anatômico interativo no Módulo 8. */
+/** Esquema anatômico interativo do Módulo 8. */
 export function AnatomySlot() {
   return (
-    <div className="my-6 rounded-2xl border border-dashed border-line bg-surface-2 p-5 text-sm text-muted">
-      O esquema anatômico interativo fica em{" "}
-      <Link href="/simuladores?aba=anatomia" className="font-medium text-accent underline">
-        Simuladores → Anatomia
-      </Link>
-      .
+    <div className="no-print my-6 rounded-2xl border border-line bg-surface p-4">
+      <AnatomyExplorer compact />
     </div>
   );
 }
