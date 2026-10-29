@@ -1,0 +1,281 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ------------------------------------------------------------------
+   Tokens de cor — tema claro (padrão) e escuro ("negatoscópio")
+   ------------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+  --bg: #f4f7f9;
+  --surface: #ffffff;
+  --surface-2: #eaf0f3;
+  --surface-3: #dde6eb;
+  --border: #cfdae1;
+  --text: #0d1b23;
+  --muted: #4a5c67;
+  --accent: #0b7480;
+  --accent-strong: #075a63;
+  --accent-soft: #d6eff1;
+  --on-accent: #ffffff;
+  --focus: #0891b2;
+  --success: #15803d;
+  --success-soft: #dcf5e4;
+  --danger: #b91c1c;
+  --danger-soft: #fde4e4;
+  --warning: #a35a00;
+  --warning-soft: #fff1d6;
+  --complement: #5b4bb5;
+  --complement-soft: #ebe8fb;
+  --shadow: 0 1px 2px rgb(13 27 35 / 0.06), 0 4px 16px rgb(13 27 35 / 0.06);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #061015;
+  --surface: #0c1a21;
+  --surface-2: #11242d;
+  --surface-3: #183039;
+  --border: #213a44;
+  --text: #e4f0f3;
+  --muted: #9bb1ba;
+  --accent: #2dd4bf;
+  --accent-strong: #5eead4;
+  --accent-soft: #0e3437;
+  --on-accent: #032421;
+  --focus: #67e8f9;
+  --success: #4ade80;
+  --success-soft: #0f2e1d;
+  --danger: #f87171;
+  --danger-soft: #3a1416;
+  --warning: #fbbf24;
+  --warning-soft: #33260b;
+  --complement: #b4a9ff;
+  --complement-soft: #221d44;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 6px 24px rgb(0 0 0 / 0.35);
+}
+
+/* Sem JavaScript: segue o sistema */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --bg: #061015;
+    --surface: #0c1a21;
+    --surface-2: #11242d;
+    --surface-3: #183039;
+    --border: #213a44;
+    --text: #e4f0f3;
+    --muted: #9bb1ba;
+    --accent: #2dd4bf;
+    --accent-strong: #5eead4;
+    --accent-soft: #0e3437;
+    --on-accent: #032421;
+    --focus: #67e8f9;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--border);
+  --color-fg: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-complement: var(--complement);
+  --color-complement-soft: var(--complement-soft);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-jakarta), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --shadow-card: var(--shadow);
+}
+
+/* ------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------ */
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.5rem;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+}
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+/* Texto longo do roteiro */
+.prose-study {
+  line-height: 1.7;
+}
+.prose-study strong {
+  font-weight: 650;
+  color: var(--text);
+}
+
+/* Cartão com borda colorida do módulo (usa --mod) */
+.mod-tint {
+  background: color-mix(in srgb, var(--mod) 10%, var(--surface));
+  border-color: color-mix(in srgb, var(--mod) 45%, var(--border));
+}
+.mod-bar {
+  background: var(--mod);
+}
+.mod-text {
+  color: color-mix(in srgb, var(--mod) 70%, var(--text));
+}
+
+/* Flashcard 3D */
+.flip-scene {
+  perspective: 1200px;
+}
+.flip-card {
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.flip-card[data-flipped="true"] {
+  transform: rotateY(180deg);
+}
+.flip-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-back {
+  transform: rotateY(180deg);
+}
+
+/* React Flow — integração com o tema */
+.react-flow {
+  --xy-background-color: transparent;
+  --xy-controls-button-background-color: var(--surface);
+  --xy-controls-button-background-color-hover: var(--surface-2);
+  --xy-controls-button-color: var(--text);
+  --xy-controls-button-border-color: var(--border);
+  --xy-minimap-background-color: var(--surface);
+  --xy-minimap-mask-background-color: color-mix(in srgb, var(--bg) 70%, transparent);
+  --xy-attribution-background-color: transparent;
+}
+/* Nós não selecionáveis recebem pointer-events: none no React Flow;
+   os nossos têm botões internos (detalhes / expandir). */
+.react-flow__node-mind {
+  pointer-events: all !important;
+}
+.react-flow__controls {
+  box-shadow: var(--shadow) !important;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.react-flow__controls-button svg {
+  fill: currentColor;
+}
+
+/* ------------------------------------------------------------------
+   Acessibilidade: movimento reduzido
+   ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Impressão (A4)
+   ------------------------------------------------------------------ */
+@page {
+  size: A4;
+  margin: 12mm 12mm 14mm;
+}
+
+@media print {
+  :root,
+  [data-theme="dark"] {
+    color-scheme: light;
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-2: #f2f5f7;
+    --surface-3: #e6ecef;
+    --border: #b9c6cd;
+    --text: #000000;
+    --muted: #333333;
+    --accent: #075a63;
+    --accent-strong: #053f45;
+    --accent-soft: #e3f3f4;
+    --complement: #3f318f;
+    --complement-soft: #efedfb;
+    --shadow: none;
+  }
+  html,
+  body {
+    background: #fff !important;
+    font-size: 10pt;
+  }
+  .no-print,
+  .site-header,
+  .site-footer,
+  .skip-link {
+    display: none !important;
+  }
+  .print-break-before {
+    break-before: page;
+  }
+  .print-avoid {
+    break-inside: avoid;
+  }
+  table,
+  figure,
+  li {
+    break-inside: avoid;
+  }
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
