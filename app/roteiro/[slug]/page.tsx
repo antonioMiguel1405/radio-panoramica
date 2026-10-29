@@ -113,19 +113,34 @@ export default async function ModulePage({ params }: PageProps<"/roteiro/[slug]"
                 t.figure && <Figure id={t.figure} />
               )}
 
-              <ul className="prose-study mt-4 space-y-3">
-                {t.points.map((p, i) => (
-                  <li key={i} className="flex gap-3 rounded-xl border border-line bg-surface px-4 py-3">
-                    <span aria-hidden className="mod-bar mt-2.5 size-2 shrink-0 rounded-full" />
-                    <div className="min-w-0">
-                      <p className="text-fg">
-                        <Rich text={p.text} />
-                      </p>
-                      <SourceBadge source={p.source} slides={p.slides} size="xs" className="mt-1.5" />
-                    </div>
-                  </li>
-                ))}
-              </ul>
+              {t.points.every((p) => p.text === p.label) ? (
+                // Lista de nomes (ex.: estruturas anatômicas): formato compacto, um selo só.
+                <div className="mt-4 rounded-xl border border-line bg-surface p-4">
+                  <ul className="grid gap-x-4 gap-y-1.5 sm:grid-cols-2">
+                    {t.points.map((p) => (
+                      <li key={p.label} className="flex items-center gap-2 text-fg">
+                        <span aria-hidden className="mod-bar size-2 shrink-0 rounded-full" />
+                        {p.label}
+                      </li>
+                    ))}
+                  </ul>
+                  <SourceBadge source={t.points[0].source} slides={t.points[0].slides} size="xs" className="mt-3" />
+                </div>
+              ) : (
+                <ul className="prose-study mt-4 space-y-3">
+                  {t.points.map((p, i) => (
+                    <li key={i} className="flex gap-3 rounded-xl border border-line bg-surface px-4 py-3">
+                      <span aria-hidden className="mod-bar mt-2.5 size-2 shrink-0 rounded-full" />
+                      <div className="min-w-0">
+                        <p className="text-fg">
+                          <Rich text={p.text} />
+                        </p>
+                        <SourceBadge source={p.source} slides={p.slides} size="xs" className="mt-1.5" />
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
 
               {t.table && <ContentTable table={t.table} color={m.color} />}
             </section>

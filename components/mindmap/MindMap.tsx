@@ -8,7 +8,6 @@ import {
   MiniMap,
   ReactFlow,
   ReactFlowProvider,
-  getNodesBounds,
   getViewportForBounds,
   useNodesInitialized,
   useReactFlow,
@@ -190,7 +189,8 @@ function MindMapInner() {
     setExporting(true);
     setStatus("Gerando imagem…");
     try {
-      const bounds = getNodesBounds(rf.getNodes());
+      // método da instância: respeita o nodeOrigin centralizado
+      const bounds = rf.getNodesBounds(rf.getNodes());
       const pad = 80;
       const scale = 2;
       const width = Math.min(6000, Math.ceil(bounds.width + pad * 2));

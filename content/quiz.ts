@@ -109,9 +109,9 @@ export const quiz: QuizQuestion[] = [
   ]),
   q("q13", "angulo-negativo", "aula", [21], "Por causa do ângulo negativo, qual estrutura é projetada como faixa radiopaca horizontal sobre ou acima dos ápices dos dentes superiores?", [
     ["Palato duro", "O palato duro é projetado sobre a região dos ápices superiores / acima deles."],
-    ["Osso hioide", "O hioide fica abaixo da mandíbula."],
-    ["Canal da mandíbula", "O canal da mandíbula está na mandíbula, abaixo dos dentes inferiores."],
-    ["Processo estiloide", "O estiloide aparece na região posterior, próximo ao ramo."],
+    ["Osso hioide", "Não é o hioide: a faixa projetada sobre/acima dos ápices superiores é o palato duro."],
+    ["Canal da mandíbula", "O canal é uma estrutura da mandíbula, não da região dos ápices superiores."],
+    ["Processo estiloide", "O estiloide pertence ao grupo ATM e base do crânio; a faixa sobre os ápices superiores é o palato duro."],
   ]),
   q("q14", "angulo-negativo", "aula", [20, 21], "A analogia da lanterna, usada na aula para o ângulo negativo, diz que:", [
     ["Uma lanterna abaixo do objeto projeta a sombra mais alta na parede.", "Assim o feixe de baixo para cima projeta mais alto o que está perto da fonte."],

@@ -212,7 +212,7 @@ function ExplainPanel({ id }: { id: string }) {
         <>
           <h3 className="font-display text-lg font-bold">Posicionamento correto</h3>
           <p className="mt-2 text-sm text-fg">
-            Plano oclusal em leve “sorriso”, lados simétricos, incisivos nítidos e proporcionais. Escolha
+            Plano oclusal com curva suave (sem “sorriso” exagerado nem inversão), lados simétricos, incisivos nítidos e proporcionais. Escolha
             um erro abaixo para ver a imagem se deformar.
           </p>
           <p className="mt-2 text-sm text-muted">

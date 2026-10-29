@@ -192,7 +192,7 @@ function SearchPanel({ onClose }: { onClose: () => void }) {
                 ))}
               </div>
               <p className="mt-4 text-xs text-muted">
-                Dica: a busca ignora acentos — “camara” encontra “câmara”. Use ↑ ↓ e Enter.
+                Dica: a busca ignora acentos — “angulo” encontra “ângulo”. Use ↑ ↓ e Enter.
               </p>
             </div>
           ) : results.length === 0 ? (
